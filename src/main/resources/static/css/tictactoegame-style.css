@@ -1,0 +1,92 @@
+.navbar-brand img {	
+	display: inline;	
+}
+
+.game-area {
+	text-align: center;
+	margin: 20px;
+}
+
+.game-status {
+	margin: 0 0 15px 0 !important;
+}
+
+.board {
+	border: 2px solid #696969;
+	margin: 10px auto;
+}
+
+.board td { 
+	border: 1px solid #696969;
+}
+
+.board-row-square {
+	text-align: center;
+	height: 130px;
+	width: 130px;
+	font-size: 90px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: white;
+}
+
+.board-row-square.x-value {
+	background-color: rgb(255, 0, 0);
+}
+
+.board-row-square.o-value {
+	background-color: rgb(0, 64, 128);
+}
+
+.board-row-square.available:hover {
+	cursor: pointer;
+	background: #EEE;
+}
+
+.btn-restart-wrap {
+	margin-top: 10px;
+}
+
+#btn-restart {
+	width: 200px;
+}
+
+.player {
+	margin-top: .5rem!important;
+	margin-bottom: .5rem!important;
+	color: #fff;
+}
+
+.player-x {
+	float: left;
+	background-color: #fd0d0d;
+	border-color: #fd0d0d;
+}
+
+.player-o {
+	float: right;
+	background-color: #0d6efd;
+	border-color: #0d6efd;
+}
+
+.score {
+	margin-top: .5rem!important;
+	margin-bottom: .5rem!important;
+	background-color: #ffffff;
+	border-color: #ffffff;
+}
+
+.score-x {
+	float: left;
+	color: #fd0d0d;
+
+}
+
+.score-o {
+	float: right;
+	color: #0d6efd;
+}
+
+.players-body {
+	padding: 10px;
+}
