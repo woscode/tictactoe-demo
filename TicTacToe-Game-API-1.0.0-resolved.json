@@ -1,0 +1,221 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple API",
+    "version": "1.0.0",
+    "title": "Tic Tac ToeGame API",
+    "contact": {
+      "email": "wos@company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/woscode/TicTacToe-Game-API/1.0.0",
+  "tags": [
+    {
+      "name": "tictactoe",
+      "description": "TicTacToe Game"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/tictactoe": {
+      "get": {
+        "tags": [
+          "tictactoe"
+        ],
+        "summary": "Main page",
+        "description": "main page",
+        "operationId": "TicTacToeGameSession",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "return page of creation new game",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TicTacToeGameSession"
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "tictactoe"
+        ],
+        "summary": "Login and create new game",
+        "description": "Login and create new game",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Game",
+            "description": "Current game state Make a move, restart game, or change configuration",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          },
+          {
+            "name": "square_id",
+            "in": "formData",
+            "description": "Make move on the index",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "restart",
+            "in": "formData",
+            "description": "Restart game",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "player_move_first",
+            "in": "formData",
+            "description": "Who moves first",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "game created"
+          },
+          "409": {
+            "description": "this field is already taken"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Game": {
+      "type": "object",
+      "required": [
+        "id",
+        "isPlayerOneMoveFirst",
+        "playerOne",
+        "playerTwo",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 23
+        },
+        "playerOne": {
+          "$ref": "#/definitions/Player"
+        },
+        "playerTwo": {
+          "$ref": "#/definitions/Player"
+        },
+        "isPlayerOneMoveFirst": {
+          "type": "boolean"
+        },
+        "state": {
+          "$ref": "#/definitions/GameState"
+        }
+      }
+    },
+    "GameState": {
+      "type": "string",
+      "enum": [
+        "NEW",
+        "PLAYING",
+        "PAUSED",
+        "FINISHED"
+      ]
+    },
+    "Player": {
+      "type": "object",
+      "required": [
+        "id",
+        "mark",
+        "name",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "example": "Boris"
+        },
+        "state": {
+          "$ref": "#/definitions/PlayerState"
+        },
+        "mark": {
+          "$ref": "#/definitions/Mark"
+        }
+      }
+    },
+    "Board": {
+      "type": "object",
+      "required": [
+        "field"
+      ],
+      "properties": {
+        "field": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Square"
+          }
+        }
+      }
+    },
+    "Square": {
+      "type": "object",
+      "required": [
+        "id",
+        "mark"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "mark": {
+          "$ref": "#/definitions/Mark"
+        }
+      }
+    },
+    "Mark": {
+      "type": "string",
+      "example": "Mark.X, Mark.O, Mark.EMPTY",
+      "enum": [
+        "EMPTY",
+        "X",
+        "O"
+      ]
+    },
+    "PlayerState": {
+      "type": "string",
+      "example": "PlayerState.WIN, PlayerState.LOSE, PlayerState.DRAW, PlayerState.NONE",
+      "enum": [
+        "NONE",
+        "PLAYING",
+        "WIN",
+        "LOSE",
+        "DRAW"
+      ]
+    }
+  }
+}
